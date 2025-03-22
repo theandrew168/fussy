@@ -1,0 +1,35 @@
+{
+	"name": "fussy",
+	"type": "module",
+	"version": "0.0.1",
+	"description": "Helping tech writers avoid fussy developers",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"dev": "tsx watch src/index.ts",
+		"test": "vitest run",
+		"check": "tsc",
+		"format": "prettier --write src/"
+	},
+	"dependencies": {
+		"@hono/node-server": "^1.14.0",
+		"hono": "^4.7.5"
+	},
+	"devDependencies": {
+		"prettier": "^3.5.3",
+		"tsx": "^4.19.3",
+		"typescript": "^5.8.2",
+		"vitest": "^3.0.9"
+	},
+	"prettier": {
+		"arrowParens": "always",
+		"bracketSameLine": false,
+		"bracketSpacing": true,
+		"jsxSingleQuote": false,
+		"printWidth": 120,
+		"semi": true,
+		"singleQuote": false,
+		"trailingComma": "all",
+		"useTabs": true
+	}
+}
