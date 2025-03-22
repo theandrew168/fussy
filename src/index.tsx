@@ -2,9 +2,13 @@ import Anthropic from "@anthropic-ai/sdk";
 import { Hono } from "hono";
 import { Octokit } from "octokit";
 
-const client = new Anthropic();
+const client = new Anthropic({
+	apiKey: process.env["ANTHROPIC_API_KEY"],
+});
 
-const octokit = new Octokit();
+const octokit = new Octokit({
+	auth: process.env["GITHUB_API_KEY"],
+});
 
 const app = new Hono();
 app.get("/", (c) => {
