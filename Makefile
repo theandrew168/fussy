@@ -2,7 +2,7 @@
 .SUFFIXES:
 
 .PHONY: default
-default: test
+default: build
 
 node_modules:
 	npm install
@@ -11,9 +11,17 @@ node_modules:
 run: node_modules
 	npm run dev
 
+.PHONY: build
+build: node_modules
+	npm run build
+
 .PHONY: test
 test: node_modules
 	npm run test
+
+.PHONY: check
+check: node_modules
+	npm run check
 
 .PHONY: format
 format: node_modules
