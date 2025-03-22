@@ -10,7 +10,7 @@
 		"build": "vite build",
 		"test": "vitest run",
 		"check": "tsc",
-		"format": "prettier --write src/"
+		"format": "prettier --write src/ public/"
 	},
 	"dependencies": {
 		"@anthropic-ai/sdk": "^0.39.0",

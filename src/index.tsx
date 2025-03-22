@@ -2,6 +2,8 @@ import Anthropic from "@anthropic-ai/sdk";
 import { Hono } from "hono";
 import { Octokit } from "octokit";
 
+import Button from "./components/Button";
+
 // References:
 // https://hono.dev/docs/getting-started/basic
 // https://github.com/octokit/octokit.js
@@ -59,6 +61,11 @@ const app = new Hono();
 // Debugging endpoint to test Hono.
 app.get("/", (c) => {
 	return c.text("Hello Node.js!\n");
+});
+
+// Debugging endpoint to test Hono.
+app.get("/button", (c) => {
+	return c.html(<Button />);
 });
 
 // Debugging endpoint to test the GitHub API.
