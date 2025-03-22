@@ -2,6 +2,11 @@ import Anthropic from "@anthropic-ai/sdk";
 import { Hono } from "hono";
 import { Octokit } from "octokit";
 
+// References:
+// https://hono.dev/docs/getting-started/basic
+// https://github.com/octokit/octokit.js
+// https://github.com/anthropics/anthropic-sdk-typescript
+
 /**
  * Fetch a commit from a GitHub repository.
  */
