@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# fussy
 
-## Getting Started
+Helping tech writers avoid fussy developers
 
-First, run the development server:
+## Concept
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Often, tech writers are blocked and frustrated by developers who won't take the time to help non-developers understand their changes.
+Instead of waiting for developers to answer the writer's questions, let LLMs help them summarize the raw materials: tickets, diffs, etc.
+To that end, this is an application for helping tech writers summarize Jira tickets, GitHub PRs, and similar software-related content.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Workflow
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. A "user" registers on the site (OAuth?)
+2. They start by adding at least one "integration" (GitHub, Jira, etc)
+3. The "user" can a new "feature"
+   1. This is something has been added / changed with the application and needs documentation
+4. Users can add "context" to a "feature" in many ways:
+   1. Manually by the writer (notes)
+   2. With a VCS "integration" (PRs, commits, etc)
+   3. With a Project "integration" (epics, stories, tasks, etc)
+5. With "context" gathered about the "feature", the user can:
+   1. Summarize the "feature" in human-readable terms
+   2. Generate a script for recording a demo about the "feature"
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## VCS Integrations
 
-## Learn More
+1. GitHub
+2. GitLab (future)
+3. BitBucket (future)
+4. Azure Repos (future)
 
-To learn more about Next.js, take a look at the following resources:
+## Project Integrations:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Jira (future)
+2. Trello (future)
+3. Asana (future)
+4. Azure Dev Ops (future)
