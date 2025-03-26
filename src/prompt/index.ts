@@ -1,4 +1,4 @@
-import type { Context } from "@/model";
+import { Context } from "@/model";
 
 function renderContext(context: Context): string {
 	switch (context.type) {

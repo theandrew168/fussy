@@ -1,6 +1,6 @@
-import type { UUID } from "crypto";
+import { UUID } from "crypto";
 
-import type { ContextConfig, Feature } from "@/model";
+import { ContextConfig, Feature } from "@/model";
 
 export type FeatureRepository = {
 	create: (feature: Feature) => Promise<void>;

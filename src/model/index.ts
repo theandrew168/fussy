@@ -17,7 +17,7 @@
  * It has a Jira context for ticket 5678.
  */
 
-import type { UUID } from "crypto";
+import { UUID } from "crypto";
 
 /**
  * Entity.
@@ -32,8 +32,8 @@ export type Account = {
  * Entity - always identified by ID but the data could change.
  */
 export type GitHubPullRequestContextConfig = {
-	type: 'githubPullRequest';
 	id: UUID;
+	type: 'githubPullRequest';
 	owner: string;
 	repo: string;
 	pullRequestID: string;
@@ -41,50 +41,26 @@ export type GitHubPullRequestContextConfig = {
 
 export type GitHubPullRequestContext = {
 	type: 'githubPullRequest';
+	config: GitHubPullRequestContextConfig;
 	// TODO: actual metadata
 	pullRequestData: string;
-	config: GitHubPullRequestContextConfig;
 }
-
-/**
- * Entity? Does this even need to be persisted?
- */
-export type GitHubIntegration = {
-	id: UUID;
-	/**
-	 * Get all of the relevant information for this pull request
-	 * and format it into a string for LLM prompting.
-	 */
-	fetchPullRequestContext: (config: GitHubPullRequestContextConfig) => Promise<GitHubPullRequestContext>;
-};
 
 /**
  * Entity - always identified by ID but the data could change.
  */
 export type JiraTicketContextConfig = {
-	type: 'jiraTicket';
 	id: UUID;
+	type: 'jiraTicket';
 	ticketID: string;
 };
 
 export type JiraTicketContext = {
 	type: 'jiraTicket';
+	config: JiraTicketContextConfig;
 	// TODO: actual metadata
 	ticketData: string;
-	config: JiraTicketContextConfig;
 }
-
-/**
- * Entity. Does this even need to be persisted?
- */
-export type JiraIntegration = {
-	id: UUID;
-	/**
-	 * Get all of the relevant information for this ticket
-	 * and format it into a string for LLM prompting.
-	 */
-	fetchTicketContext: (config: JiraTicketContextConfig) => Promise<JiraTicketContext>;
-};
 
 export type ContextConfig = GitHubPullRequestContextConfig | JiraTicketContextConfig;
 
