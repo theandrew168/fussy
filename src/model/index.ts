@@ -6,11 +6,11 @@
  * Jira Context: (Ticket ID) -> Text, comments, etc
  *
  * Feature: Groups a bunch of context together.
- * 
+ *
  * Context has a couple meanings:
  * 1. A reference to some information _somewhere_ like a PR or ticket (config).
  * 2. A piece of information that has been gathered and is ready to be rendered (actual info).
- * 
+ *
  * Exmaple:
  * I have a feature called "update user agent".
  * It has a GitHub context for PR 1234.
@@ -33,34 +33,43 @@ export type Account = {
  */
 export type GitHubPullRequestContextConfig = {
 	id: UUID;
-	type: 'githubPullRequest';
+	type: "githubPullRequest";
 	owner: string;
 	repo: string;
-	pullRequestID: string;
+	// TODO: Change this to PR ID.
+	ref: string;
+};
+
+/**
+ * A file that has been changed in a commit (obtained via the GitHub API).
+ * TODO: Get this type from the Octokit library.
+ */
+export type GitHubFile = {
+	filename: string;
+	patch: string;
 };
 
 export type GitHubPullRequestContext = {
-	type: 'githubPullRequest';
+	type: "githubPullRequest";
 	config: GitHubPullRequestContextConfig;
-	// TODO: actual metadata
-	pullRequestData: string;
-}
+	files: GitHubFile[];
+};
 
 /**
  * Entity - always identified by ID but the data could change.
  */
 export type JiraTicketContextConfig = {
 	id: UUID;
-	type: 'jiraTicket';
+	type: "jiraTicket";
 	ticketID: string;
 };
 
 export type JiraTicketContext = {
-	type: 'jiraTicket';
+	type: "jiraTicket";
 	config: JiraTicketContextConfig;
 	// TODO: actual metadata
 	ticketData: string;
-}
+};
 
 export type ContextConfig = GitHubPullRequestContextConfig | JiraTicketContextConfig;
 

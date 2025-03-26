@@ -3,7 +3,7 @@ import { LLM } from "@/llm";
 import { Context, ContextConfig, Feature } from "@/model";
 import { createPrompt } from "@/prompt";
 
-class FeatureSummarizer {
+export class FeatureSummarizer {
 	private llm: LLM;
 	private githubIntegration: GitHubIntegration;
 	private jiraIntegration: JiraIntegration;
@@ -26,7 +26,7 @@ class FeatureSummarizer {
 	}
 
 	async summarize(feature: Feature): Promise<string> {
-		const contexts = await Promise.all(feature.contextConfigs.map(this.fetchContext));
+		const contexts = await Promise.all(feature.contextConfigs.map((config) => this.fetchContext(config)));
 		const prompt = createPrompt(contexts);
 		return this.llm.ask(prompt);
 	}

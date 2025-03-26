@@ -1,11 +1,11 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-class AnthropicLLM {
+export class AnthropicLLM {
 	private client: Anthropic;
 	private model: string;
 
 	constructor(apiKey: string, model: string = "claude-3-7-sonnet-latest") {
-		this.client = new Anthropic({ apiKey});
+		this.client = new Anthropic({ apiKey });
 		this.model = model;
 	}
 
