@@ -6,69 +6,96 @@
  * Jira Context: (Ticket ID) -> Text, comments, etc
  *
  * Feature: Groups a bunch of context together.
+ * 
+ * Context has a couple meanings:
+ * 1. A reference to some information _somewhere_ like a PR or ticket (config).
+ * 2. A piece of information that has been gathered and is ready to be rendered (actual info).
+ * 
+ * Exmaple:
+ * I have a feature called "update user agent".
+ * It has a GitHub context for PR 1234.
+ * It has a Jira context for ticket 5678.
  */
 
 import type { UUID } from "crypto";
 
-type Account = {
+/**
+ * Entity.
+ * Has many integrations.
+ * Has many features.
+ */
+export type Account = {
 	id: UUID;
 };
 
-type GitHubPullRequestContext = {
+/**
+ * Entity - always identified by ID but the data could change.
+ */
+export type GitHubPullRequestContextConfig = {
+	type: 'githubPullRequest';
+	id: UUID;
 	owner: string;
 	repo: string;
 	pullRequestID: string;
 };
 
-type GitHubIntegration = {
-	id: UUID;
-	getPullRequestContext: (context: GitHubPullRequestContext) => Promise<Context>;
-};
-
-type JiraTicketContext = {
-	ticketID: string;
-};
-
-type JiraIntegration = {
-	id: UUID;
-	getTicketContext: (context: JiraTicketContext) => Promise<Context>;
-};
-
-/**
- * Basic context behavior: render to a prompt-ready string.
- */
-type Context = {
-	render: () => Promise<string>;
-};
-
-/**
- * Super naive version of gathering a bunch of contexts, rendering them,
- * and then forming a cohesive prompt for summarizing, scripting, etc.
- */
-async function createPrompt(contexts: Context[]): Promise<string> {
-	const prompts = await Promise.all(contexts.map((context) => context.render()));
-	return prompts.join("\n\n");
+export type GitHubPullRequestContext = {
+	type: 'githubPullRequest';
+	// TODO: actual metadata
+	pullRequestData: string;
+	config: GitHubPullRequestContextConfig;
 }
 
 /**
- * One account can have many features. Many features can have many contexts.
+ * Entity? Does this even need to be persisted?
  */
-type Feature = {
+export type GitHubIntegration = {
 	id: UUID;
-	name: string;
-	contexts: Context[];
+	/**
+	 * Get all of the relevant information for this pull request
+	 * and format it into a string for LLM prompting.
+	 */
+	fetchPullRequestContext: (config: GitHubPullRequestContextConfig) => Promise<GitHubPullRequestContext>;
 };
 
 /**
- * Basic LLM behavior: ask a question, get a response.
- *
- * Implementations:
- * Local ollama
- * Anthropic
- * OpenAI
- * Gemini
- * Generic REST API
+ * Entity - always identified by ID but the data could change.
  */
-type LLM = {
-	ask: (prompt: string) => Promise<string>;
+export type JiraTicketContextConfig = {
+	type: 'jiraTicket';
+	id: UUID;
+	ticketID: string;
+};
+
+export type JiraTicketContext = {
+	type: 'jiraTicket';
+	// TODO: actual metadata
+	ticketData: string;
+	config: JiraTicketContextConfig;
+}
+
+/**
+ * Entity. Does this even need to be persisted?
+ */
+export type JiraIntegration = {
+	id: UUID;
+	/**
+	 * Get all of the relevant information for this ticket
+	 * and format it into a string for LLM prompting.
+	 */
+	fetchTicketContext: (config: JiraTicketContextConfig) => Promise<JiraTicketContext>;
+};
+
+export type ContextConfig = GitHubPullRequestContextConfig | JiraTicketContextConfig;
+
+export type Context = GitHubPullRequestContext | JiraTicketContext;
+
+/**
+ * One account can have many features.
+ * Many features can have many contexts.
+ */
+export type Feature = {
+	id: UUID;
+	name: string;
+	contextConfigs: ContextConfig[];
 };
