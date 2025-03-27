@@ -10,12 +10,12 @@ export class AnthropicLLM {
 	}
 
 	async ask(prompt: string): Promise<string> {
-		const message = await this.client.messages.create({
+		const response = await this.client.messages.create({
 			max_tokens: 1024,
 			messages: [{ role: "user", content: prompt }],
 			model: this.model,
 		});
-		const textMessages = message.content.filter((message) => message.type === "text");
-		return textMessages.map((message) => message.text).join("\n");
+		const textBlocks = response.content.filter((contentBlock) => contentBlock.type === "text");
+		return textBlocks.map((textBlock) => textBlock.text).join("\n");
 	}
 }

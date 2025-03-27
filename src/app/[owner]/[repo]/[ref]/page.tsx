@@ -2,7 +2,8 @@ import { randomUUID } from "crypto";
 
 import { APIGitHubIntegration } from "@/integration/github";
 import { APIJiraIntegration } from "@/integration/jira";
-import { AnthropicLLM } from "@/llm/anthropic";
+// import { AnthropicLLM } from "@/llm/anthropic";
+import { OllamaLLM } from "@/llm/ollama";
 import { Feature } from "@/model";
 import { FeatureSummarizer } from "@/service";
 import styles from "./page.module.css";
@@ -43,7 +44,8 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 	}
 
 	// TODO: Move these to a shared / closured location.
-	const llm = new AnthropicLLM(anthropicAPIKey);
+	// const llm = new AnthropicLLM(anthropicAPIKey);
+	const llm = new OllamaLLM();
 	const githubIntegration = new APIGitHubIntegration(githubAPIKey);
 	const jiraIntegration = new APIJiraIntegration();
 	const featureSummarizer = new FeatureSummarizer(llm, githubIntegration, jiraIntegration);
