@@ -1,0 +1,123 @@
+issue {
+  expand: 'renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations',
+  id: '10000',
+  self: 'https://theandrew168.atlassian.net/rest/api/3/issue/10000',
+  key: 'SCRUM-1',
+  fields: {
+    statuscategorychangedate: '2025-03-27T20:08:30.048-0500',
+    issuetype: {
+      self: 'https://theandrew168.atlassian.net/rest/api/3/issuetype/10001',
+      id: '10001',
+      description: 'Tasks track small, distinct pieces of work.',
+      iconUrl: 'https://theandrew168.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium',
+      name: 'Task',
+      subtask: false,
+      avatarId: 10318,
+      entityId: '669773c6-ef86-43f2-9004-edebba9fd940',
+      hierarchyLevel: 0
+    },
+    components: [],
+    timespent: null,
+    timeoriginalestimate: null,
+    project: {
+      self: 'https://theandrew168.atlassian.net/rest/api/3/project/10000',
+      id: '10000',
+      key: 'SCRUM',
+      name: 'Fussy Coder',
+      projectTypeKey: 'software',
+      simplified: true,
+      avatarUrls: [Object]
+    },
+    description: { type: 'doc', version: 1, content: [Array] },
+    fixVersions: [],
+    aggregatetimespent: null,
+    statusCategory: {
+      self: 'https://theandrew168.atlassian.net/rest/api/3/statuscategory/2',
+      id: 2,
+      key: 'new',
+      colorName: 'blue-gray',
+      name: 'To Do'
+    },
+    resolution: null,
+    customfield_10035: null,
+    timetracking: {},
+    security: null,
+    attachment: [],
+    aggregatetimeestimate: null,
+    resolutiondate: null,
+    workratio: -1,
+    summary: 'Add an Ollama implementation of the LLM interface',
+    watches: {
+      self: 'https://theandrew168.atlassian.net/rest/api/3/issue/SCRUM-1/watchers',
+      watchCount: 1,
+      isWatching: true
+    },
+    issuerestriction: { issuerestrictions: {}, shouldDisplay: true },
+    lastViewed: '2025-03-27T20:08:40.824-0500',
+    creator: {
+      self: 'https://theandrew168.atlassian.net/rest/api/3/user?accountId=712020%3A53626087-48d4-4ef7-bfaa-1399d2241a70',
+      accountId: '712020:53626087-48d4-4ef7-bfaa-1399d2241a70',
+      emailAddress: 'steveday168@gmail.com',
+      avatarUrls: [Object],
+      displayName: 'Andrew Dailey',
+      active: true,
+      timeZone: 'America/Chicago',
+      accountType: 'atlassian'
+    },
+    subtasks: [],
+    created: '2025-03-27T20:08:29.639-0500',
+    customfield_10020: [ [Object] ],
+    reporter: {
+      self: 'https://theandrew168.atlassian.net/rest/api/3/user?accountId=712020%3A53626087-48d4-4ef7-bfaa-1399d2241a70',
+      accountId: '712020:53626087-48d4-4ef7-bfaa-1399d2241a70',
+      emailAddress: 'steveday168@gmail.com',
+      avatarUrls: [Object],
+      displayName: 'Andrew Dailey',
+      active: true,
+      timeZone: 'America/Chicago',
+      accountType: 'atlassian'
+    },
+    customfield_10021: null,
+    aggregateprogress: { progress: 0, total: 0 },
+    priority: {
+      self: 'https://theandrew168.atlassian.net/rest/api/3/priority/3',
+      iconUrl: 'https://theandrew168.atlassian.net/images/icons/priorities/medium_new.svg',
+      name: 'Medium',
+      id: '3'
+    },
+    customfield_10001: null,
+    labels: [],
+    customfield_10016: null,
+    environment: null,
+    customfield_10019: '0|hzzzzz:',
+    timeestimate: null,
+    aggregatetimeoriginalestimate: null,
+    versions: [],
+    duedate: null,
+    progress: { progress: 0, total: 0 },
+    issuelinks: [],
+    votes: {
+      self: 'https://theandrew168.atlassian.net/rest/api/3/issue/SCRUM-1/votes',
+      votes: 0,
+      hasVoted: false
+    },
+    comment: {
+      comments: [Array],
+      self: 'https://theandrew168.atlassian.net/rest/api/3/issue/10000/comment',
+      maxResults: 1,
+      total: 1,
+      startAt: 0
+    },
+    worklog: { startAt: 0, maxResults: 20, total: 0, worklogs: [] },
+    assignee: null,
+    updated: '2025-03-27T20:10:44.260-0500',
+    status: {
+      self: 'https://theandrew168.atlassian.net/rest/api/3/status/10000',
+      description: '',
+      iconUrl: 'https://theandrew168.atlassian.net/',
+      name: 'To Do',
+      id: '10000',
+      statusCategory: [Object]
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { Context, GitHubFile, GitHubPullRequestContext, JiraTicketContext } from "@/model";
+import { Context, GitHubFile, GitHubPullRequestContext, JiraIssueContext } from "@/model";
 
 function renderGitHubPullRequestContext(context: GitHubPullRequestContext): string {
 	// Split each file into a string highlighting the filename and patch.
@@ -13,8 +13,8 @@ function renderGitHubPullRequestContext(context: GitHubPullRequestContext): stri
 	return `Summarize these code changes. Include the file names and a brief description of the changes made. Format the summary using plain text.\n\n${joinedFiles}`;
 }
 
-function renderJiraTicketContext(context: JiraTicketContext): string {
-	return `Jira Ticket: ${context.ticketData}`;
+function renderJiraTicketContext(context: JiraIssueContext): string {
+	return `Jira Ticket: ${context.issueData}`;
 }
 
 function renderContext(context: Context): string {

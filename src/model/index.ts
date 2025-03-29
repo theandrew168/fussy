@@ -58,22 +58,22 @@ export type GitHubPullRequestContext = {
 /**
  * Entity - always identified by ID but the data could change.
  */
-export type JiraTicketContextConfig = {
+export type JiraIssueContextConfig = {
 	id: UUID;
-	type: "jiraTicket";
-	ticketID: string;
+	type: "jiraIssue";
+	issueKey: string;
 };
 
-export type JiraTicketContext = {
-	type: "jiraTicket";
-	config: JiraTicketContextConfig;
+export type JiraIssueContext = {
+	type: "jiraIssue";
+	config: JiraIssueContextConfig;
 	// TODO: actual metadata
-	ticketData: string;
+	issueData: string;
 };
 
-export type ContextConfig = GitHubPullRequestContextConfig | JiraTicketContextConfig;
+export type ContextConfig = GitHubPullRequestContextConfig | JiraIssueContextConfig;
 
-export type Context = GitHubPullRequestContext | JiraTicketContext;
+export type Context = GitHubPullRequestContext | JiraIssueContext;
 
 /**
  * One account can have many features.

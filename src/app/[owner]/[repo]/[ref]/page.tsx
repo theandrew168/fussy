@@ -28,6 +28,11 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 				repo,
 				ref,
 			},
+			{
+				id: randomUUID(),
+				type: "jiraIssue",
+				issueKey: "SCRUM-1",
+			},
 		],
 	};
 
@@ -43,11 +48,29 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 		throw new Error("GITHUB_API_KEY is required.");
 	}
 
+	// TODO: Ensure this is present at startup.
+	const jiraURL = process.env["JIRA_URL"];
+	if (!jiraURL) {
+		throw new Error("JIRA_URL is required.");
+	}
+
+	// TODO: Ensure this is present at startup.
+	const jiraEmail = process.env["JIRA_EMAIL"];
+	if (!jiraEmail) {
+		throw new Error("JIRA_EMAIL is required.");
+	}
+
+	// TODO: Ensure this is present at startup.
+	const jiraAPIKey = process.env["JIRA_API_KEY"];
+	if (!jiraAPIKey) {
+		throw new Error("JIRA_API_KEY is required.");
+	}
+
 	// TODO: Move these to a shared / closured location.
 	// const llm = new AnthropicLLM(anthropicAPIKey);
 	const llm = new OllamaLLM();
 	const githubIntegration = new APIGitHubIntegration(githubAPIKey);
-	const jiraIntegration = new APIJiraIntegration();
+	const jiraIntegration = new APIJiraIntegration(jiraURL, jiraEmail, jiraAPIKey);
 	const featureSummarizer = new FeatureSummarizer(llm, githubIntegration, jiraIntegration);
 
 	const summary = await featureSummarizer.summarize(feature);

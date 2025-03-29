@@ -18,8 +18,8 @@ export class FeatureSummarizer {
 		switch (config.type) {
 			case "githubPullRequest":
 				return this.githubIntegration.fetchPullRequestContext(config);
-			case "jiraTicket":
-				return this.jiraIntegration.fetchTicketContext(config);
+			case "jiraIssue":
+				return this.jiraIntegration.fetchIssueContext(config);
 			default:
 				throw new Error(`Unknown context config: ${config}`);
 		}
@@ -27,6 +27,10 @@ export class FeatureSummarizer {
 
 	async summarize(feature: Feature): Promise<string> {
 		const contexts = await Promise.all(feature.contextConfigs.map((config) => this.fetchContext(config)));
+		// for (const context of contexts) {
+		// 	console.log("DERZ context", context);
+		// }
+		// return "Just testing other stuff.";
 		const prompt = createPrompt(contexts);
 		return this.llm.ask(prompt);
 	}

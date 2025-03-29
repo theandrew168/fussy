@@ -1,8 +1,8 @@
 import {
 	GitHubPullRequestContext,
 	GitHubPullRequestContextConfig,
-	JiraTicketContext,
-	JiraTicketContextConfig,
+	JiraIssueContext,
+	JiraIssueContextConfig,
 } from "@/model";
 
 export type GitHubIntegration = {
@@ -18,5 +18,5 @@ export type JiraIntegration = {
 	 * Get all of the relevant information for this ticket
 	 * and format it into a string for LLM prompting.
 	 */
-	fetchTicketContext: (config: JiraTicketContextConfig) => Promise<JiraTicketContext>;
+	fetchIssueContext: (config: JiraIssueContextConfig) => Promise<JiraIssueContext>;
 };

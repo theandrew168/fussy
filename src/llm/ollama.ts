@@ -1,4 +1,4 @@
-import ollama from 'ollama'
+import ollama from "ollama";
 
 export class OllamaLLM {
 	private model: string;
@@ -10,8 +10,8 @@ export class OllamaLLM {
 	async ask(prompt: string): Promise<string> {
 		const response = await ollama.chat({
 			model: this.model,
-			messages: [{ role: 'user', content: prompt }],
-		})
+			messages: [{ role: "user", content: prompt }],
+		});
 		return response.message.content;
 	}
 }
