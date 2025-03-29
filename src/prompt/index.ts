@@ -3,18 +3,17 @@ import { Context, GitHubFile, GitHubPullRequestContext, JiraIssueContext } from 
 function renderGitHubPullRequestContext(context: GitHubPullRequestContext): string {
 	// Split each file into a string highlighting the filename and patch.
 	function renderFile(file: GitHubFile): string {
-		return `File: ${file.filename}\nPatch:\n${file.patch}`;
+		return `${file.filename}\n${file.patch}`;
 	}
 
 	const { files } = context;
 	const renderedFiles = files.map(renderFile);
-	const joinedFiles = renderedFiles.join("\n\n");
-
-	return `Summarize these code changes. Include the file names and a brief description of the changes made. Format the summary using plain text.\n\n${joinedFiles}`;
+	return renderedFiles.join("\n\n");
 }
 
 function renderJiraTicketContext(context: JiraIssueContext): string {
-	return `Jira Ticket: ${context.issueData}`;
+	const comments = context.comments.join("\n\n");
+	return `${context.description}\n\n${comments}`;
 }
 
 function renderContext(context: Context): string {
@@ -31,5 +30,5 @@ function renderContext(context: Context): string {
 export function createPrompt(contexts: Context[]): string {
 	const renderedContexts = contexts.map(renderContext);
 	const joinedContexts = renderedContexts.join("\n\n");
-	return `Please summarize the following information:\n\n${joinedContexts}`;
+	return `Please summarize the following information (which may include Git patches and Jira issues):\n\n${joinedContexts}`;
 }

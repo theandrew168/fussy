@@ -27,10 +27,6 @@ export class FeatureSummarizer {
 
 	async summarize(feature: Feature): Promise<string> {
 		const contexts = await Promise.all(feature.contextConfigs.map((config) => this.fetchContext(config)));
-		// for (const context of contexts) {
-		// 	console.log("DERZ context", context);
-		// }
-		// return "Just testing other stuff.";
 		const prompt = createPrompt(contexts);
 		return this.llm.ask(prompt);
 	}

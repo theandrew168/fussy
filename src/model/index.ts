@@ -67,8 +67,8 @@ export type JiraIssueContextConfig = {
 export type JiraIssueContext = {
 	type: "jiraIssue";
 	config: JiraIssueContextConfig;
-	// TODO: actual metadata
-	issueData: string;
+	description: string;
+	comments: string[];
 };
 
 export type ContextConfig = GitHubPullRequestContextConfig | JiraIssueContextConfig;
