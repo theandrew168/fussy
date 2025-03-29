@@ -1,4 +1,4 @@
-issue {
+{
   expand: 'renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations',
   id: '10000',
   self: 'https://theandrew168.atlassian.net/rest/api/3/issue/10000',
@@ -19,6 +19,21 @@ issue {
     components: [],
     timespent: null,
     timeoriginalestimate: null,
+    description: {
+      type: 'doc',
+      version: 1,
+      content: [
+        {
+          type: 'paragraph',
+          content: [
+            {
+              type: 'text',
+              text: 'The LLM interface exists to decouple the application from the implementation details of the multitude of LLM services. Examples of these services include OpenAI, Anthropic, Google, Ollama, etc. Today, we only have an implementation that supports models hosted on Anthropic (such as Claude). Since local LLMs are all the rage, add another implementation that utilizes a locally-running Ollama model.'
+            }
+          ]
+        }
+      ]
+    },
     project: {
       self: 'https://theandrew168.atlassian.net/rest/api/3/project/10000',
       id: '10000',
@@ -26,11 +41,14 @@ issue {
       name: 'Fussy Coder',
       projectTypeKey: 'software',
       simplified: true,
-      avatarUrls: [Object]
+      avatarUrls: {
+        '48x48': 'https://theandrew168.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400',
+        '24x24': 'https://theandrew168.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=small',
+        '16x16': 'https://theandrew168.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=xsmall',
+        '32x32': 'https://theandrew168.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10400?size=medium'
+      }
     },
-    description: { type: 'doc', version: 1, content: [Array] },
     fixVersions: [],
-    aggregatetimespent: null,
     statusCategory: {
       self: 'https://theandrew168.atlassian.net/rest/api/3/statuscategory/2',
       id: 2,
@@ -38,6 +56,7 @@ issue {
       colorName: 'blue-gray',
       name: 'To Do'
     },
+    aggregatetimespent: null,
     resolution: null,
     customfield_10035: null,
     timetracking: {},
@@ -47,18 +66,23 @@ issue {
     resolutiondate: null,
     workratio: -1,
     summary: 'Add an Ollama implementation of the LLM interface',
+    issuerestriction: { issuerestrictions: {}, shouldDisplay: true },
+    lastViewed: '2025-03-27T20:08:40.824-0500',
     watches: {
       self: 'https://theandrew168.atlassian.net/rest/api/3/issue/SCRUM-1/watchers',
       watchCount: 1,
       isWatching: true
     },
-    issuerestriction: { issuerestrictions: {}, shouldDisplay: true },
-    lastViewed: '2025-03-27T20:08:40.824-0500',
     creator: {
       self: 'https://theandrew168.atlassian.net/rest/api/3/user?accountId=712020%3A53626087-48d4-4ef7-bfaa-1399d2241a70',
       accountId: '712020:53626087-48d4-4ef7-bfaa-1399d2241a70',
       emailAddress: 'steveday168@gmail.com',
-      avatarUrls: [Object],
+      avatarUrls: {
+        '48x48': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+        '24x24': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+        '16x16': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+        '32x32': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png'
+      },
       displayName: 'Andrew Dailey',
       active: true,
       timeZone: 'America/Chicago',
@@ -66,18 +90,23 @@ issue {
     },
     subtasks: [],
     created: '2025-03-27T20:08:29.639-0500',
-    customfield_10020: [ [Object] ],
+    customfield_10020: [ { id: 1, name: 'SCRUM Sprint 1', state: 'future', boardId: 1 } ],
+    customfield_10021: null,
     reporter: {
       self: 'https://theandrew168.atlassian.net/rest/api/3/user?accountId=712020%3A53626087-48d4-4ef7-bfaa-1399d2241a70',
       accountId: '712020:53626087-48d4-4ef7-bfaa-1399d2241a70',
       emailAddress: 'steveday168@gmail.com',
-      avatarUrls: [Object],
+      avatarUrls: {
+        '48x48': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+        '24x24': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+        '16x16': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+        '32x32': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png'
+      },
       displayName: 'Andrew Dailey',
       active: true,
       timeZone: 'America/Chicago',
       accountType: 'atlassian'
     },
-    customfield_10021: null,
     aggregateprogress: { progress: 0, total: 0 },
     priority: {
       self: 'https://theandrew168.atlassian.net/rest/api/3/priority/3',
@@ -95,21 +124,85 @@ issue {
     versions: [],
     duedate: null,
     progress: { progress: 0, total: 0 },
+    comment: {
+      comments: [
+        {
+          self: 'https://theandrew168.atlassian.net/rest/api/3/issue/10000/comment/10000',
+          id: '10000',
+          author: {
+            self: 'https://theandrew168.atlassian.net/rest/api/3/user?accountId=712020%3A53626087-48d4-4ef7-bfaa-1399d2241a70',
+            accountId: '712020:53626087-48d4-4ef7-bfaa-1399d2241a70',
+            emailAddress: 'steveday168@gmail.com',
+            avatarUrls: {
+              '48x48': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+              '24x24': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+              '16x16': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+              '32x32': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png'
+            },
+            displayName: 'Andrew Dailey',
+            active: true,
+            timeZone: 'America/Chicago',
+            accountType: 'atlassian'
+          },
+          body: {
+            type: 'doc',
+            version: 1,
+            content: [
+              {
+                type: 'paragraph',
+                content: [
+                  {
+                    type: 'text',
+                    text: 'It looks like we can use the '
+                  },
+                  {
+                    type: 'text',
+                    text: 'ollama-js',
+                    marks: [
+                      {
+                        type: 'link',
+                        attrs: { href: 'https://github.com/ollama/ollama-js' }
+                      }
+                    ]
+                  },
+                  { type: 'text', text: ' library for this!' }
+                ]
+              }
+            ]
+          },
+          updateAuthor: {
+            self: 'https://theandrew168.atlassian.net/rest/api/3/user?accountId=712020%3A53626087-48d4-4ef7-bfaa-1399d2241a70',
+            accountId: '712020:53626087-48d4-4ef7-bfaa-1399d2241a70',
+            emailAddress: 'steveday168@gmail.com',
+            avatarUrls: {
+              '48x48': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+              '24x24': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+              '16x16': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png',
+              '32x32': 'https://secure.gravatar.com/avatar/9c41a56616cf41437ecffc1cb618cfc0?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FAD-6.png'
+            },
+            displayName: 'Andrew Dailey',
+            active: true,
+            timeZone: 'America/Chicago',
+            accountType: 'atlassian'
+          },
+          created: '2025-03-27T20:10:44.260-0500',
+          updated: '2025-03-27T20:10:44.260-0500',
+          jsdPublic: true
+        }
+      ],
+      self: 'https://theandrew168.atlassian.net/rest/api/3/issue/10000/comment',
+      maxResults: 1,
+      total: 1,
+      startAt: 0
+    },
     issuelinks: [],
     votes: {
       self: 'https://theandrew168.atlassian.net/rest/api/3/issue/SCRUM-1/votes',
       votes: 0,
       hasVoted: false
     },
-    comment: {
-      comments: [Array],
-      self: 'https://theandrew168.atlassian.net/rest/api/3/issue/10000/comment',
-      maxResults: 1,
-      total: 1,
-      startAt: 0
-    },
-    worklog: { startAt: 0, maxResults: 20, total: 0, worklogs: [] },
     assignee: null,
+    worklog: { startAt: 0, maxResults: 20, total: 0, worklogs: [] },
     updated: '2025-03-27T20:10:44.260-0500',
     status: {
       self: 'https://theandrew168.atlassian.net/rest/api/3/status/10000',
@@ -117,7 +210,13 @@ issue {
       iconUrl: 'https://theandrew168.atlassian.net/',
       name: 'To Do',
       id: '10000',
-      statusCategory: [Object]
+      statusCategory: {
+        self: 'https://theandrew168.atlassian.net/rest/api/3/statuscategory/2',
+        id: 2,
+        key: 'new',
+        colorName: 'blue-gray',
+        name: 'To Do'
+      }
     }
   }
 }

@@ -21,7 +21,7 @@ function renderContext(context: Context): string {
 	switch (context.type) {
 		case "githubPullRequest":
 			return renderGitHubPullRequestContext(context);
-		case "jiraTicket":
+		case "jiraIssue":
 			return renderJiraTicketContext(context);
 		default:
 			throw new Error(`Unknown context: ${context}`);
