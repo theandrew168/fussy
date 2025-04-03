@@ -1,6 +1,19 @@
+import path from "node:path";
+
 import { Octokit } from "octokit";
 
 import { GitHubFile, GitHubPullRequestContext, GitHubPullRequestContextConfig } from "@/model";
+
+/**
+ * Files to be ignored because they are typically secondary to the main
+ * dependency changes. Furthermore, they generate a lot of noise in the
+ * diff, which makes it hard to see the actual changes.
+ */
+const IGNORE_FILES = [
+	'package-lock.json',
+	"yarn.lock",
+	"pnpm-lock.yaml",
+];
 
 export class APIGitHubIntegration {
 	private octokit: Octokit;
@@ -22,9 +35,15 @@ export class APIGitHubIntegration {
 		// Skip files without patches.
 		const files: GitHubFile[] = [];
 		for (const file of commit.files ?? []) {
+			const basename = path.basename(file.filename);
+			if (IGNORE_FILES.includes(basename)) {
+				continue;
+			}
+
 			if (!file.patch) {
 				continue;
 			}
+
 			files.push({
 				filename: file.filename,
 				patch: file.patch,

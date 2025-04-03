@@ -1,3 +1,5 @@
+import { UUID } from "node:crypto";
+
 /**
  * GitHub Integration: Grant access to repos via GitHub App
  * Jira Integration: Something with Atlassian Forge?
@@ -16,8 +18,6 @@
  * It has a GitHub context for PR 1234.
  * It has a Jira context for ticket 5678.
  */
-
-import { UUID } from "crypto";
 
 /**
  * Entity.
