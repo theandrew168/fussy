@@ -30,7 +30,7 @@ export class FeatureSummarizer {
 		for (const context of contexts) {
 			console.log("Fetched context:", context);
 		}
-		return 'testing';
+		return "testing";
 		const prompt = createPrompt(contexts);
 		return this.llm.ask(prompt);
 	}

@@ -9,11 +9,7 @@ import { GitHubFile, GitHubPullRequestContext, GitHubPullRequestContextConfig } 
  * dependency changes. Furthermore, they generate a lot of noise in the
  * diff, which makes it hard to see the actual changes.
  */
-const IGNORE_FILES = [
-	'package-lock.json',
-	"yarn.lock",
-	"pnpm-lock.yaml",
-];
+const IGNORE_FILES = ["package-lock.json", "yarn.lock", "pnpm-lock.yaml"];
 
 export class APIGitHubIntegration {
 	private octokit: Octokit;
