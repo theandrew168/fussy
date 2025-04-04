@@ -1,7 +1,10 @@
 import { Metadata } from "next";
 
+import styles from "./layout.module.css";
+
 import "./reset.css";
 import "./fonts.css";
+import "./global.css";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -14,8 +17,26 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body className="sans-serif">{children}</body>
+		<html lang="en" className="sans-serif">
+			<body>
+				<header className={styles.header}>
+					<nav className={styles.nav}>
+						<ul className={styles.links}>
+							<li className={styles.link}>
+								<a href="/">FussyCoder</a>
+							</li>
+							<li className={styles.link}>
+								<a href="/features">Features</a>
+							</li>
+							<li className={styles.link}>
+								<a href="/integrations">Integrations</a>
+							</li>
+						</ul>
+					</nav>
+				</header>
+				<main>{children}</main>
+				<footer></footer>
+			</body>
 		</html>
 	);
 }
