@@ -3,7 +3,7 @@ import ollama from "ollama";
 export class OllamaLLM {
 	private model: string;
 
-	constructor(model: string = "deepseek-coder:1.3b") {
+	constructor(model: string = "llama3.2") {
 		this.model = model;
 	}
 
