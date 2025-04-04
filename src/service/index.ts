@@ -1,6 +1,6 @@
-import { GitHubIntegration, JiraIntegration } from "@/integration";
-import { LLM } from "@/llm";
-import { Context, ContextConfig, Feature } from "@/model";
+import type { GitHubIntegration, JiraIntegration } from "@/integration";
+import type { LLM } from "@/llm";
+import type { Context, ContextConfig, Feature } from "@/model";
 import { createPrompt } from "@/prompt";
 
 export class FeatureSummarizer {

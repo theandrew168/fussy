@@ -1,32 +1,29 @@
 import { randomUUID } from "node:crypto";
 
 import { readConfigFromEnvironment } from "@/config";
+import type { Feature } from "@/model";
+import { OllamaLLM } from "@/llm/ollama";
 import { APIGitHubIntegration } from "@/integration/github";
 import { APIJiraIntegration } from "@/integration/jira";
-import { OllamaLLM } from "@/llm/ollama";
-import { Feature } from "@/model";
 import { FeatureSummarizer } from "@/service";
-import styles from "./page.module.css";
 
 type Params = {
-	owner: string;
-	repo: string;
-	ref: string;
+	id: string;
 };
 
-export default async function Page({ params }: { params: Promise<Params> }) {
-	const { owner, repo, ref } = await params;
+export default async function Feature({ params }: { params: Promise<Params> }) {
+	const { id } = await params;
 
 	const feature: Feature = {
 		id: randomUUID(),
-		name: "Awesome DDD Feature",
+		name: "OAuth 2.0 Authentication",
 		contextConfigs: [
 			{
 				id: randomUUID(),
 				type: "githubPullRequest",
-				owner,
-				repo,
-				ref,
+				owner: "theandrew168",
+				repo: "fussy",
+				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
 			},
 			{
 				id: randomUUID(),
@@ -47,9 +44,11 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 	const summary = await featureSummarizer.summarize(feature);
 
 	return (
-		<div className={styles.page}>
-			<h1>Summary</h1>
-			<p>{summary}</p>
+		<div className="container">
+			<h1>Feature</h1>
+			<p>ID: {id}</p>
+			<p>Name: {feature.name}</p>
+			<p>Summary: {summary}</p>
 		</div>
 	);
 }
