@@ -1,7 +1,7 @@
 import { Version3Client } from "jira.js";
 import type { Document, Issue } from "jira.js/out/version3/models";
 
-import type { JiraIssueContext, JiraIssueContextConfig } from "@/model";
+import type { JiraIssueContext, JiraIssueSource } from "@/model";
 
 type DocumentWithoutVersion = Omit<Document, "version">;
 
@@ -53,13 +53,13 @@ export class APIJiraIntegration {
 		});
 	}
 
-	async fetchIssueContext(config: JiraIssueContextConfig): Promise<JiraIssueContext> {
+	async fetchIssueContext(source: JiraIssueSource): Promise<JiraIssueContext> {
 		const issue = await this.client.issues.getIssue({
-			issueIdOrKey: config.issueKey,
+			issueIdOrKey: source.issueKey,
 		});
 		return {
 			type: "jiraIssue",
-			config,
+			source,
 			description: renderIssueDescription(issue),
 			comments: renderIssueComments(issue),
 		};

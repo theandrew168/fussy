@@ -9,7 +9,7 @@ export default async function Dashboard() {
 		{
 			id: randomUUID(),
 			name: "OAuth 2.0 Authentication",
-			contextConfigs: [
+			sources: [
 				{
 					id: randomUUID(),
 					type: "githubPullRequest",
@@ -49,7 +49,7 @@ export default async function Dashboard() {
 						<h3>
 							<Link href={`/features/${feature.id}`}>{feature.name}</Link>
 						</h3>
-						<p>CCs: {feature.contextConfigs.map((config) => config.type).join(", ")}</p>
+						<p>CCs: {feature.sources.map((config) => config.type).join(", ")}</p>
 					</div>
 				))}
 			</section>

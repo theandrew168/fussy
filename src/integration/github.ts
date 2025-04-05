@@ -2,7 +2,7 @@ import path from "node:path";
 
 import { Octokit } from "octokit";
 
-import type { GitHubFile, GitHubPullRequestContext, GitHubPullRequestContextConfig } from "@/model";
+import type { GitHubFile, GitHubPullRequestContext, GitHubPullRequestSource } from "@/model";
 
 /**
  * Files to be ignored because they are typically secondary to the main
@@ -18,8 +18,8 @@ export class APIGitHubIntegration {
 		this.octokit = new Octokit({ auth: apiKey });
 	}
 
-	async fetchPullRequestContext(config: GitHubPullRequestContextConfig): Promise<GitHubPullRequestContext> {
-		const { owner, repo, ref } = config;
+	async fetchPullRequestContext(source: GitHubPullRequestSource): Promise<GitHubPullRequestContext> {
+		const { owner, repo, ref } = source;
 		// TODO: Fetch actual PRs instead of individual commits.
 		const resp = await this.octokit.rest.repos.getCommit({
 			owner,
@@ -48,7 +48,7 @@ export class APIGitHubIntegration {
 
 		return {
 			type: "githubPullRequest",
-			config,
+			source,
 			files,
 		};
 	}

@@ -20,7 +20,7 @@ export default function RootLayout({
 		<html lang="en" className="sans-serif">
 			<body>
 				<header className={styles.header}>
-					<nav className={styles.nav}>
+					<nav className={`container ${styles.nav}`}>
 						<ul className={styles.links}>
 							<li className={styles.link}>
 								<a href="/">FussyCoder</a>

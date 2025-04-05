@@ -17,7 +17,7 @@ export default async function Feature({ params }: { params: Promise<Params> }) {
 	const feature: Feature = {
 		id: randomUUID(),
 		name: "OAuth 2.0 Authentication",
-		contextConfigs: [
+		sources: [
 			{
 				id: randomUUID(),
 				type: "githubPullRequest",

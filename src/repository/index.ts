@@ -1,6 +1,8 @@
 import type { UUID } from "node:crypto";
 
-import type { ContextConfig, Feature } from "@/model";
+import type { Source, Feature } from "@/model";
+
+export type IntegrationRepository = {};
 
 export type FeatureRepository = {
 	create: (feature: Feature) => Promise<void>;
@@ -9,6 +11,6 @@ export type FeatureRepository = {
 	update: (feature: Feature) => Promise<void>;
 	delete: (id: UUID) => Promise<void>;
 
-	addContextConfig: (featureID: UUID, config: ContextConfig) => Promise<void>;
+	addContextConfig: (featureID: UUID, config: Source) => Promise<void>;
 	removeContextConfig: (featureID: UUID, configID: UUID) => Promise<void>;
 };

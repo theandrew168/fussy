@@ -31,7 +31,7 @@ export type Account = {
 /**
  * Entity - always identified by ID but the data could change.
  */
-export type GitHubPullRequestContextConfig = {
+export type GitHubPullRequestSource = {
 	id: UUID;
 	type: "githubPullRequest";
 	owner: string;
@@ -49,38 +49,44 @@ export type GitHubFile = {
 	patch: string;
 };
 
+/**
+ * Value Object - derived from a GitHub pull request source.
+ */
 export type GitHubPullRequestContext = {
 	type: "githubPullRequest";
-	config: GitHubPullRequestContextConfig;
+	source: GitHubPullRequestSource;
 	files: GitHubFile[];
 };
 
 /**
  * Entity - always identified by ID but the data could change.
  */
-export type JiraIssueContextConfig = {
+export type JiraIssueSource = {
 	id: UUID;
 	type: "jiraIssue";
 	issueKey: string;
 };
 
+/**
+ * Value Object - derived from a Jira issue source.
+ */
 export type JiraIssueContext = {
 	type: "jiraIssue";
-	config: JiraIssueContextConfig;
+	source: JiraIssueSource;
 	description: string;
 	comments: string[];
 };
 
-export type ContextConfig = GitHubPullRequestContextConfig | JiraIssueContextConfig;
+export type Source = GitHubPullRequestSource | JiraIssueSource;
 
 export type Context = GitHubPullRequestContext | JiraIssueContext;
 
 /**
  * One account can have many features.
- * Many features can have many contexts.
+ * Many features can have many sources.
  */
 export type Feature = {
 	id: UUID;
 	name: string;
-	contextConfigs: ContextConfig[];
+	sources: Source[];
 };

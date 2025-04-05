@@ -1,6 +1,6 @@
 import type { GitHubIntegration, JiraIntegration } from "@/integration";
 import type { LLM } from "@/llm";
-import type { Context, ContextConfig, Feature } from "@/model";
+import type { Context, Source, Feature } from "@/model";
 import { createPrompt } from "@/prompt";
 
 export class FeatureSummarizer {
@@ -14,7 +14,7 @@ export class FeatureSummarizer {
 		this.jiraIntegration = jiraIntegration;
 	}
 
-	async fetchContext(config: ContextConfig): Promise<Context> {
+	async fetchContext(config: Source): Promise<Context> {
 		switch (config.type) {
 			case "githubPullRequest":
 				return this.githubIntegration.fetchPullRequestContext(config);
@@ -26,7 +26,7 @@ export class FeatureSummarizer {
 	}
 
 	async summarize(feature: Feature): Promise<string> {
-		const contexts = await Promise.all(feature.contextConfigs.map((config) => this.fetchContext(config)));
+		const contexts = await Promise.all(feature.sources.map((config) => this.fetchContext(config)));
 		const prompt = createPrompt(contexts);
 		return this.llm.ask(prompt);
 	}
