@@ -1,7 +1,8 @@
+import { randomUUID } from "node:crypto";
+
 import Link from "next/link";
 
 import type { Feature } from "@/model";
-import { randomUUID } from "node:crypto";
 
 export default async function Dashboard() {
 	const features: Feature[] = [
