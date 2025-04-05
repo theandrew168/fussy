@@ -1,4 +1,4 @@
-import { UUID } from "node:crypto";
+import type { UUID } from "node:crypto";
 
 /**
  * GitHub Integration: Grant access to repos via GitHub App
