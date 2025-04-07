@@ -1,4 +1,4 @@
-import type { GitHubPullRequestContext, GitHubPullRequestSource, JiraIssueContext, JiraIssueSource } from "@/model";
+import type { GitHubPullRequestContext, GitHubPullRequestSource, JiraIssueContext, JiraIssueSource } from "@/domain";
 
 export type GitHubIntegration = {
 	/**

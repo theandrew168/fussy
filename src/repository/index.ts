@@ -1,6 +1,6 @@
 import type { UUID } from "node:crypto";
 
-import type { Source, Feature } from "@/model";
+import type { Source, Feature } from "@/domain";
 
 export type IntegrationRepository = {};
 
