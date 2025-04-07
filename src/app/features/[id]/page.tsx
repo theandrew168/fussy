@@ -1,11 +1,10 @@
 import { randomUUID } from "node:crypto";
 
 import { readConfigFromEnvironment } from "@/config";
-import type { Feature } from "@/domain";
+import { FeatureSummarizer, type Feature } from "@/domain";
 import { OllamaLLM } from "@/llm/ollama";
 import { APIGitHubIntegration } from "@/integration/github";
 import { APIJiraIntegration } from "@/integration/jira";
-import { FeatureSummarizer } from "@/service";
 
 type Params = {
 	id: string;

@@ -39,6 +39,7 @@ function renderIssueComments(issue: Issue): string[] {
 }
 
 export class APIJiraIntegration {
+	url: string = "TODO";
 	private client: Version3Client;
 
 	constructor(url: string, email: string, apiKey: string) {

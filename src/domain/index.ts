@@ -90,3 +90,110 @@ export type Feature = {
 	name: string;
 	sources: Source[];
 };
+
+export type GitHubIntegration = {
+	url: string;
+
+	/**
+	 * Get all of the relevant information for a pull request source.
+	 */
+	fetchPullRequestContext: (source: GitHubPullRequestSource) => Promise<GitHubPullRequestContext>;
+};
+
+export type JiraIntegration = {
+	url: string;
+
+	/**
+	 * Get all of the relevant information for a Jira issue source.
+	 */
+	fetchIssueContext: (source: JiraIssueSource) => Promise<JiraIssueContext>;
+};
+
+function renderGitHubPullRequestContext(context: GitHubPullRequestContext): string {
+	// Split each file into a string highlighting the filename and patch.
+	function renderFile(file: GitHubFile): string {
+		return `${file.filename}\n${file.patch}`;
+	}
+
+	const { files } = context;
+	const renderedFiles = files.map(renderFile);
+	return renderedFiles.join("\n\n");
+}
+
+function renderJiraTicketContext(context: JiraIssueContext): string {
+	const comments = context.comments.join("\n\n");
+	return `${context.description}\n\n${comments}`;
+}
+
+function renderContext(context: Context): string {
+	switch (context.type) {
+		case "githubPullRequest":
+			return renderGitHubPullRequestContext(context);
+		case "jiraIssue":
+			return renderJiraTicketContext(context);
+		default:
+			throw new Error(`Unknown context: ${context}`);
+	}
+}
+
+export function createPrompt(contexts: Context[]): string {
+	const renderedContexts = contexts.map(renderContext);
+	const joinedContexts = renderedContexts.join("\n\n");
+	return `Please summarize the following information (which may include Git patches and Jira issues):\n\n${joinedContexts}`;
+}
+
+/**
+ * Basic LLM behavior: ask a question, get a response.
+ *
+ * Implementations:
+ * Local ollama
+ * Anthropic
+ * OpenAI
+ * Gemini
+ * Generic REST API
+ */
+export type LLM = {
+	ask: (prompt: string) => Promise<string>;
+};
+
+export class FeatureSummarizer {
+	private llm: LLM;
+	private githubIntegration: GitHubIntegration;
+	private jiraIntegration: JiraIntegration;
+
+	constructor(llm: LLM, githubIntegration: GitHubIntegration, jiraIntegration: JiraIntegration) {
+		this.llm = llm;
+		this.githubIntegration = githubIntegration;
+		this.jiraIntegration = jiraIntegration;
+	}
+
+	async fetchContext(config: Source): Promise<Context> {
+		switch (config.type) {
+			case "githubPullRequest":
+				return this.githubIntegration.fetchPullRequestContext(config);
+			case "jiraIssue":
+				return this.jiraIntegration.fetchIssueContext(config);
+			default:
+				throw new Error(`Unknown context config: ${config}`);
+		}
+	}
+
+	async summarize(feature: Feature): Promise<string> {
+		const contexts = await Promise.all(feature.sources.map((config) => this.fetchContext(config)));
+		const prompt = createPrompt(contexts);
+		return this.llm.ask(prompt);
+	}
+}
+
+export type IntegrationRepository = {};
+
+export type FeatureRepository = {
+	create: (feature: Feature) => Promise<void>;
+	list: () => Promise<Feature[]>;
+	read: (id: UUID) => Promise<Feature>;
+	update: (feature: Feature) => Promise<void>;
+	delete: (id: UUID) => Promise<void>;
+
+	addContextConfig: (featureID: UUID, config: Source) => Promise<void>;
+	removeContextConfig: (featureID: UUID, configID: UUID) => Promise<void>;
+};

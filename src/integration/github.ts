@@ -12,6 +12,7 @@ import type { GitHubFile, GitHubPullRequestContext, GitHubPullRequestSource } fr
 const IGNORE_FILES = ["package-lock.json", "yarn.lock", "pnpm-lock.yaml"];
 
 export class APIGitHubIntegration {
+	url: string = "TODO";
 	private octokit: Octokit;
 
 	constructor(apiKey: string) {
