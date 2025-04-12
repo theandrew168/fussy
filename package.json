@@ -20,7 +20,8 @@
 		"ollama": "^0.5.14",
 		"openai": "^4.90.0",
 		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"react-dom": "^19.0.0",
+		"simple-icons": "^14.12.1"
 	},
 	"devDependencies": {
 		"@types/node": "^20.17.25",
