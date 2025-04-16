@@ -2,7 +2,7 @@ import path from "node:path";
 
 import { Octokit } from "octokit";
 
-import type { GitHubFile, GitHubPullRequestContext, GitHubPullRequestSource } from "@/domain";
+import type { GitHubFile, GitHubPullRequestContext, GitHubPullRequestSource } from "@/domain/model";
 
 /**
  * Files to be ignored because they are typically secondary to the main

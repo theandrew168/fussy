@@ -1,7 +1,8 @@
 import { randomUUID } from "node:crypto";
 
 import { readConfigFromEnvironment } from "@/config";
-import { FeatureSummarizer, type Feature } from "@/domain";
+import type { Feature } from "@/domain/model";
+import { FeatureSummarizer } from "@/domain/summary";
 import { OllamaLLM } from "@/llm/ollama";
 import { APIGitHubIntegration } from "@/integration/github";
 import { APIJiraIntegration } from "@/integration/jira";

@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 import Link from "next/link";
 import { siGithub, siJira, siTrello } from "simple-icons";
 
-import type { Feature } from "@/domain";
+import type { Feature } from "@/domain/model";
 import Card from "@/ui/Card";
 import Icon from "@/ui/Icon";
 
