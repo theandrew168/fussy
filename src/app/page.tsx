@@ -4,8 +4,10 @@ import Link from "next/link";
 import { siGithub, siJira, siTrello } from "simple-icons";
 
 import type { Feature } from "@/domain/model";
-import Card from "@/ui/Card";
-import Icon from "@/ui/Icon";
+import IntegrationCard from "@/ui/IntegrationCard";
+import type { IntegrationOverview } from "@/ui/types";
+
+import styles from "./page.module.css";
 
 // Actual existing features.
 const features: Feature[] = [
@@ -30,17 +32,17 @@ const features: Feature[] = [
 ];
 
 // Potential integrations (connected if already connected).
-const integrations = [
+const integrations: IntegrationOverview[] = [
 	{
 		name: "GitHub",
 		icon: siGithub,
-		description: "GitHub integration",
+		description: "Connect to GitHub to track pull requests and code changes.",
 		features: ["Simple integration process", "Pull request summaries", "Analyze commits and comments"],
 	},
 	{
 		name: "Jira",
 		icon: siJira,
-		description: "Jira integration",
+		description: "Connect to Jira to track issues and link them to code changes.",
 		features: [
 			"Simple integration process",
 			"Epic, story, and issue tracking",
@@ -50,7 +52,7 @@ const integrations = [
 	{
 		name: "Trello",
 		icon: siTrello,
-		description: "Trello integration",
+		description: "Connect to Jira to track cards and link them to code changes.",
 		features: ["Simple integration process", "Board and card tracking", "Analyze descriptions and comments"],
 	},
 ];
@@ -73,19 +75,11 @@ export default async function Dashboard() {
 				))}
 			</section>
 			<section>
-				<h2>Connected Integrations</h2>
-				<ul>
+				<h2 className={styles.integrationsHeader}>Connected Integrations</h2>
+				<ul className={styles.integrationsList}>
 					{integrations.map((integration) => (
 						<li key={integration.name}>
-							<Card>
-								<header>
-									<h3>
-										<Icon title={integration.icon.title} path={integration.icon.path} />
-										{integration.name}
-									</h3>
-								</header>
-							</Card>
-							<p>{integration.description}</p>
+							<IntegrationCard integration={integration} />
 						</li>
 					))}
 				</ul>

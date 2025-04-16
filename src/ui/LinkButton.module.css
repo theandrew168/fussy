@@ -1,8 +1,16 @@
 .linkButton {
-	display: inline-block;
-	padding: 1em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0.5em 1em;
 	border-radius: 0.5em;
-	background-color: var(--primary);
+	background-color: var(--primary-background);
 	color: var(--primary-foreground);
 	border: none;
+}
+
+.linkButton:hover {
+	opacity: 0.9;
+	transition: opacity 0.2s;
 }
