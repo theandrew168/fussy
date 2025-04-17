@@ -1,3 +1,5 @@
+import { randomUUID, type UUID } from "node:crypto";
+
 import { Version3Client } from "jira.js";
 import type { Document, Issue } from "jira.js/out/version3/models";
 
@@ -39,8 +41,13 @@ function renderIssueComments(issue: Issue): string[] {
 }
 
 export class APIJiraIntegration {
-	url: string = "TODO";
 	private client: Version3Client;
+
+	type = "jira" as const;
+	id: UUID = randomUUID();
+	url: string = "TODO";
+	createdAt = new Date();
+	updatedAt = new Date();
 
 	constructor(url: string, email: string, apiKey: string) {
 		this.client = new Version3Client({

@@ -26,11 +26,15 @@ export default async function Feature({ params }: { params: Promise<Params> }) {
 				owner: "theandrew168",
 				repo: "fussy",
 				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
+				createdAt: new Date(),
+				updatedAt: new Date(),
 			},
 			{
 				id: randomUUID(),
 				type: "jiraIssue",
 				issueKey: "SCRUM-1",
+				createdAt: new Date(),
+				updatedAt: new Date(),
 			},
 		],
 	};

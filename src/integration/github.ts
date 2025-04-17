@@ -1,3 +1,4 @@
+import { randomUUID, type UUID } from "node:crypto";
 import path from "node:path";
 
 import { Octokit } from "octokit";
@@ -12,8 +13,14 @@ import type { GitHubFile, GitHubPullRequestContext, GitHubPullRequestSource } fr
 const IGNORE_FILES = ["package-lock.json", "yarn.lock", "pnpm-lock.yaml"];
 
 export class APIGitHubIntegration {
-	url: string = "TODO";
 	private octokit: Octokit;
+
+	type = "github" as const;
+	id: UUID = randomUUID();
+	url: string = "TODO";
+	createdAt = new Date();
+	updatedAt = new Date();
+
 
 	constructor(apiKey: string) {
 		this.octokit = new Octokit({ auth: apiKey });

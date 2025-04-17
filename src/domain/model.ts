@@ -36,8 +36,10 @@ export type GitHubPullRequestSource = {
 	type: "githubPullRequest";
 	owner: string;
 	repo: string;
-	// TODO: Change this to PR ID.
+	// TODO: Change this to PR ID (pullNumber).
 	ref: string;
+	createdAt: Date;
+	updatedAt: Date;
 };
 
 /**
@@ -65,6 +67,8 @@ export type JiraIssueSource = {
 	id: UUID;
 	type: "jiraIssue";
 	issueKey: string;
+	createdAt: Date;
+	updatedAt: Date;
 };
 
 /**
@@ -82,7 +86,11 @@ export type Source = GitHubPullRequestSource | JiraIssueSource;
 export type Context = GitHubPullRequestContext | JiraIssueContext;
 
 export type GitHubIntegration = {
+	id: UUID;
+	type: "github";
 	url: string;
+	createdAt: Date;
+	updatedAt: Date;
 
 	/**
 	 * Get all of the relevant information for a pull request source.
@@ -91,13 +99,19 @@ export type GitHubIntegration = {
 };
 
 export type JiraIntegration = {
+	id: UUID;
+	type: "jira";
 	url: string;
+	createdAt: Date;
+	updatedAt: Date;
 
 	/**
 	 * Get all of the relevant information for a Jira issue source.
 	 */
 	fetchIssueContext: (source: JiraIssueSource) => Promise<JiraIssueContext>;
 };
+
+export type Integration = GitHubIntegration | JiraIntegration;
 
 /**
  * One account can have many features.
