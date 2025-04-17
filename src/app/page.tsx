@@ -59,7 +59,7 @@ const integrations: IntegrationOverview[] = [
 
 export default async function Dashboard() {
 	return (
-		<div className="container">
+		<>
 			<section>
 				<h1>Dashboard</h1>
 			</section>
@@ -84,6 +84,6 @@ export default async function Dashboard() {
 					))}
 				</ul>
 			</section>
-		</div>
+		</>
 	);
 }

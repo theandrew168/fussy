@@ -1,16 +1,17 @@
 .header {
 	border-bottom: 1px solid var(--border);
+	margin-bottom: 1em;
 }
 
 .nav {
-	padding: 1rem;
+	padding: 1em;
 }
 
 .links {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: 1rem;
+	gap: 1em;
 }
 
 .link:first-child {
