@@ -1,0 +1,29 @@
+.featureCard {
+	display: inline-block;
+	padding: 1em;
+	border-radius: 0.5em;
+	color: var(--card-foreground);
+	background-color: var(--card-background);
+	width: 100%;
+}
+
+.header {
+	margin-bottom: 1em;
+}
+
+.name {
+	font-size: 1.125rem;
+	font-weight: 700;
+}
+
+.createdAt {
+	font-size: 0.875rem;
+	color: var(--muted-foreground);
+}
+
+.sourcesList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 1em;
+	margin-bottom: 1em;
+}

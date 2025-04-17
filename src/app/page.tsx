@@ -1,10 +1,10 @@
 import { randomUUID } from "node:crypto";
 
-import Link from "next/link";
 import { siGithub, siJira, siTrello } from "simple-icons";
 
 import type { Feature } from "@/domain/model";
 import IntegrationCard from "@/ui/IntegrationCard";
+import FeatureCard from "@/ui/FeatureCard";
 import type { IntegrationOverview } from "@/ui/types";
 
 import styles from "./page.module.css";
@@ -13,7 +13,109 @@ import styles from "./page.module.css";
 const features: Feature[] = [
 	{
 		id: randomUUID(),
-		name: "OAuth 2.0 Authentication",
+		name: "Ollama LLM Implementation",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+		sources: [
+			{
+				id: randomUUID(),
+				type: "githubPullRequest",
+				owner: "theandrew168",
+				repo: "fussy",
+				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
+			},
+			{
+				id: randomUUID(),
+				type: "jiraIssue",
+				issueKey: "SCRUM-1",
+			},
+		],
+	},
+	{
+		id: randomUUID(),
+		name: "Dashboard Analytics Widgets",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+		sources: [
+			{
+				id: randomUUID(),
+				type: "githubPullRequest",
+				owner: "theandrew168",
+				repo: "fussy",
+				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
+			},
+			{
+				id: randomUUID(),
+				type: "jiraIssue",
+				issueKey: "SCRUM-1",
+			},
+		],
+	},
+	{
+		id: randomUUID(),
+		name: "User Profile Management",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+		sources: [
+			{
+				id: randomUUID(),
+				type: "githubPullRequest",
+				owner: "theandrew168",
+				repo: "fussy",
+				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
+			},
+			{
+				id: randomUUID(),
+				type: "jiraIssue",
+				issueKey: "SCRUM-1",
+			},
+		],
+	},
+	{
+		id: randomUUID(),
+		name: "API Rate Limiting",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+		sources: [
+			{
+				id: randomUUID(),
+				type: "githubPullRequest",
+				owner: "theandrew168",
+				repo: "fussy",
+				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
+			},
+			{
+				id: randomUUID(),
+				type: "jiraIssue",
+				issueKey: "SCRUM-1",
+			},
+		],
+	},
+	{
+		id: randomUUID(),
+		name: "Notification System",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+		sources: [
+			{
+				id: randomUUID(),
+				type: "githubPullRequest",
+				owner: "theandrew168",
+				repo: "fussy",
+				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
+			},
+			{
+				id: randomUUID(),
+				type: "jiraIssue",
+				issueKey: "SCRUM-1",
+			},
+		],
+	},
+	{
+		id: randomUUID(),
+		name: "Dark Mode Support",
+		createdAt: new Date(),
+		updatedAt: new Date(),
 		sources: [
 			{
 				id: randomUUID(),
@@ -64,15 +166,14 @@ export default async function Dashboard() {
 				<h1>Dashboard</h1>
 			</section>
 			<section>
-				<h2>Features Being Documented</h2>
-				{features.map((feature) => (
-					<div key={feature.id}>
-						<h3>
-							<Link href={`/features/${feature.id}`}>{feature.name}</Link>
-						</h3>
-						<p>CCs: {feature.sources.map((source) => source.type).join(", ")}</p>
-					</div>
-				))}
+				<h2 className={styles.featuresHeader}>Features Being Documented</h2>
+				<ul className={styles.featuresList}>
+					{features.map((feature) => (
+						<li key={feature.id}>
+							<FeatureCard feature={feature} />
+						</li>
+					))}
+				</ul>
 			</section>
 			<section>
 				<h2 className={styles.integrationsHeader}>Connected Integrations</h2>

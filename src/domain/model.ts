@@ -106,5 +106,7 @@ export type JiraIntegration = {
 export type Feature = {
 	id: UUID;
 	name: string;
+	createdAt: Date;
+	updatedAt: Date;
 	sources: Source[];
 };

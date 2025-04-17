@@ -1,9 +1,10 @@
+import { siCheckmarx } from "simple-icons";
+
 import type { IntegrationOverview } from "./types";
 import Icon from "./Icon";
+import LinkButton from "./LinkButton";
 
 import styles from "./IntegrationCard.module.css";
-import { siCheckmarx } from "simple-icons";
-import LinkButton from "./LinkButton";
 
 export type Props = {
 	integration: IntegrationOverview;
@@ -14,7 +15,7 @@ export default function IntegrationCard({ integration }: Props) {
 		<article className={styles.integrationCard}>
 			<header className={styles.header}>
 				<Icon title={integration.icon.title} path={integration.icon.path} />
-				<h3>{integration.name}</h3>
+				<h3 className={styles.name}>{integration.name}</h3>
 			</header>
 			<p className={styles.description}>{integration.description}</p>
 			<h4 className={styles.featuresHeader}>Features</h4>

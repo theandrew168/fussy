@@ -4,6 +4,7 @@
 	border-radius: 0.5em;
 	color: var(--card-foreground);
 	background-color: var(--card-background);
+	width: 100%;
 }
 
 .header {
@@ -11,6 +12,10 @@
 	align-items: center;
 	gap: 0.5em;
 	margin-bottom: 1em;
+}
+
+.name {
+	font-weight: 700;
 }
 
 .description {

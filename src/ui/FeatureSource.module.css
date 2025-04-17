@@ -1,0 +1,7 @@
+.featureSource {
+	display: flex;
+	align-items: center;
+	gap: 0.25em;
+	color: var(--muted-foreground);
+	text-wrap: nowrap;
+}

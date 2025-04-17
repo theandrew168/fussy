@@ -19,6 +19,7 @@
 }
 
 :root {
+	/* An em on the root element is relative to the browser’s default. */
 	font-size: 1em;
 }
 
