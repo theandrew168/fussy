@@ -28,9 +28,6 @@ export default function RootLayout({
 							<li className={styles.link}>
 								<a href="/features">Features</a>
 							</li>
-							<li className={styles.link}>
-								<a href="/integrations">Integrations</a>
-							</li>
 						</ul>
 					</nav>
 				</header>
