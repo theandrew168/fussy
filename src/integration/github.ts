@@ -21,7 +21,6 @@ export class APIGitHubIntegration {
 	createdAt = new Date();
 	updatedAt = new Date();
 
-
 	constructor(apiKey: string) {
 		this.octokit = new Octokit({ auth: apiKey });
 	}

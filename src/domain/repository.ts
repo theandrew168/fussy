@@ -12,7 +12,7 @@ export type IntegrationRepository = {
 export type FeatureRepository = {
 	create: (feature: Feature) => Promise<void>;
 	list: () => Promise<Feature[]>;
-	read: (featureID: UUID) => Promise<Feature>;
+	read: (featureID: UUID) => Promise<Feature | undefined>;
 	update: (feature: Feature) => Promise<void>;
 	delete: (featureID: UUID) => Promise<void>;
 
