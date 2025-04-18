@@ -1,13 +1,6 @@
 import type { UUID } from "node:crypto";
 
-import type { Feature, Integration, Source } from "./model";
-
-export type IntegrationRepository = {
-	create: (integration: Integration) => Promise<void>;
-	list: () => Promise<Integration[]>;
-	read: (integrationID: UUID) => Promise<Integration | undefined>;
-	delete: (integrationID: UUID) => Promise<void>;
-};
+import type { Feature, Source } from "./model";
 
 export type FeatureRepository = {
 	create: (feature: Feature) => Promise<void>;

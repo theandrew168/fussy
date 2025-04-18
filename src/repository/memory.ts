@@ -1,31 +1,7 @@
 import type { UUID } from "node:crypto";
 
-import type { Feature, Integration, Source } from "@/domain/model";
-import type { FeatureRepository, IntegrationRepository } from "@/domain/repository";
-
-export class MemoryIntegrationRepository implements IntegrationRepository {
-	private db: Map<UUID, Integration>;
-
-	constructor() {
-		this.db = new Map();
-	}
-
-	async create(integration: Integration): Promise<void> {
-		this.db.set(integration.id, integration);
-	}
-
-	async list(): Promise<Integration[]> {
-		return Array.from(this.db.values());
-	}
-
-	async read(integrationID: UUID): Promise<Integration | undefined> {
-		return this.db.get(integrationID);
-	}
-
-	async delete(integrationID: UUID): Promise<void> {
-		this.db.delete(integrationID);
-	}
-}
+import type { Feature, Source } from "@/domain/model";
+import type { FeatureRepository } from "@/domain/repository";
 
 export class MemoryFeatureRepository implements FeatureRepository {
 	private db: Map<UUID, Feature>;

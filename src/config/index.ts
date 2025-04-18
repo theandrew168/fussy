@@ -3,8 +3,6 @@ export type Config = {
 	jiraURL: string;
 	jiraEmail: string;
 	jiraAPIKey: string;
-	// openaiAPIKey: string;
-	// anthropicAPIKey: string;
 };
 
 export class MissingConfigError extends Error {
@@ -34,22 +32,10 @@ export function readConfigFromEnvironment(): Config {
 		throw new MissingConfigError("JIRA_API_KEY is missing");
 	}
 
-	// const openaiAPIKey = process.env.OPENAI_API_KEY;
-	// if (!openaiAPIKey) {
-	// 	throw new MissingConfigError("OPENAI_API_KEY is missing");
-	// }
-
-	// const anthropicAPIKey = process.env.ANTHROPIC_API_KEY;
-	// if (!anthropicAPIKey) {
-	// 	throw new MissingConfigError("ANTHROPIC_API_KEY is missing");
-	// }
-
 	return {
 		githubAPIKey,
 		jiraURL,
 		jiraEmail,
 		jiraAPIKey,
-		// openaiAPIKey,
-		// anthropicAPIKey,
 	};
 }
