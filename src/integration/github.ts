@@ -1,9 +1,10 @@
-import { randomUUID, type UUID } from "node:crypto";
 import path from "node:path";
 
 import { Octokit } from "octokit";
 
-import type { GitHubFile, GitHubPullRequestContext, GitHubPullRequestSource } from "@/domain/model";
+import { readConfigFromEnvironment } from "@/config";
+import type { GitHubPullRequestSource } from "@/domain/source";
+import type { GitHubFile, GitHubPullRequestContext } from "@/domain/context";
 
 /**
  * Files to be ignored because they are typically secondary to the main
@@ -13,16 +14,24 @@ import type { GitHubFile, GitHubPullRequestContext, GitHubPullRequestSource } fr
 const IGNORE_FILES = ["package-lock.json", "yarn.lock", "pnpm-lock.yaml"];
 
 export class APIGitHubIntegration {
+	private static instance?: APIGitHubIntegration;
 	private octokit: Octokit;
-
-	type = "github" as const;
-	id: UUID = randomUUID();
-	url: string = "TODO";
-	createdAt = new Date();
-	updatedAt = new Date();
 
 	constructor(apiKey: string) {
 		this.octokit = new Octokit({ auth: apiKey });
+	}
+
+	static getInstance(): APIGitHubIntegration | undefined {
+		const config = readConfigFromEnvironment();
+		if (!config.github) {
+			return undefined;
+		}
+
+		if (!this.instance) {
+			this.instance = new APIGitHubIntegration(config.github.apiKey);
+		}
+
+		return this.instance;
 	}
 
 	async fetchPullRequestContext(source: GitHubPullRequestSource): Promise<GitHubPullRequestContext> {

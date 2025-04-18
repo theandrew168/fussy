@@ -1,4 +1,4 @@
-import type { Feature } from "@/domain/model";
+import type { Feature } from "@/domain/feature";
 import FeatureSource from "./FeatureSource";
 
 import styles from "./FeatureCard.module.css";

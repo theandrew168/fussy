@@ -1,4 +1,4 @@
-import type { Context, GitHubFile, GitHubPullRequestContext, JiraIssueContext } from "./model";
+import type { Context, GitHubFile, GitHubPullRequestContext, JiraIssueContext } from "./context";
 
 function renderGitHubPullRequestContext(context: GitHubPullRequestContext): string {
 	// Split each file into a string highlighting the filename and patch.

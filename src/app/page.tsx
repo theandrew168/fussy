@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 
 import { siGithub, siJira, siTrello } from "simple-icons";
 
-import type { Feature } from "@/domain/model";
+import type { Feature } from "@/domain/feature";
 import IntegrationCard from "@/ui/IntegrationCard";
 import FeatureCard from "@/ui/FeatureCard";
 import type { IntegrationOverview } from "@/ui/types";
@@ -12,7 +12,7 @@ import styles from "./page.module.css";
 // Actual existing features.
 const features: Feature[] = [
 	{
-		id: randomUUID(),
+		id: "698e8a93-30e0-46fe-8fc8-825adf1dd8d7",
 		name: "Ollama LLM Implementation",
 		createdAt: new Date(),
 		updatedAt: new Date(),
@@ -23,15 +23,11 @@ const features: Feature[] = [
 				owner: "theandrew168",
 				repo: "fussy",
 				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 			{
 				id: randomUUID(),
 				type: "jiraIssue",
 				issueKey: "SCRUM-1",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 		],
 	},
@@ -47,15 +43,11 @@ const features: Feature[] = [
 				owner: "theandrew168",
 				repo: "fussy",
 				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 			{
 				id: randomUUID(),
 				type: "jiraIssue",
 				issueKey: "SCRUM-1",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 		],
 	},
@@ -71,15 +63,11 @@ const features: Feature[] = [
 				owner: "theandrew168",
 				repo: "fussy",
 				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 			{
 				id: randomUUID(),
 				type: "jiraIssue",
 				issueKey: "SCRUM-1",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 		],
 	},
@@ -95,15 +83,11 @@ const features: Feature[] = [
 				owner: "theandrew168",
 				repo: "fussy",
 				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 			{
 				id: randomUUID(),
 				type: "jiraIssue",
 				issueKey: "SCRUM-1",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 		],
 	},
@@ -119,15 +103,11 @@ const features: Feature[] = [
 				owner: "theandrew168",
 				repo: "fussy",
 				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 			{
 				id: randomUUID(),
 				type: "jiraIssue",
 				issueKey: "SCRUM-1",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 		],
 	},
@@ -143,15 +123,11 @@ const features: Feature[] = [
 				owner: "theandrew168",
 				repo: "fussy",
 				ref: "e4e2dc842022c35f7fe27a45effd1dc2602a23b6",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 			{
 				id: randomUUID(),
 				type: "jiraIssue",
 				issueKey: "SCRUM-1",
-				createdAt: new Date(),
-				updatedAt: new Date(),
 			},
 		],
 	},

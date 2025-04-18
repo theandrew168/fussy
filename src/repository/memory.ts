@@ -1,13 +1,23 @@
 import type { UUID } from "node:crypto";
 
-import type { Feature, Source } from "@/domain/model";
+import type { Feature } from "@/domain/feature";
 import type { FeatureRepository } from "@/domain/repository";
+import type { Source } from "@/domain/source";
 
 export class MemoryFeatureRepository implements FeatureRepository {
+	private static instance?: MemoryFeatureRepository;
 	private db: Map<UUID, Feature>;
 
 	constructor() {
 		this.db = new Map();
+	}
+
+	static getInstance(): MemoryFeatureRepository {
+		if (!this.instance) {
+			this.instance = new MemoryFeatureRepository();
+		}
+
+		return this.instance;
 	}
 
 	async create(feature: Feature): Promise<void> {

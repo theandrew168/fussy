@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { siGithub, siJira } from "simple-icons";
 
-import type { Source } from "@/domain/model";
+import type { Source } from "@/domain/source";
 import Icon from "./Icon";
 
 import styles from "./FeatureSource.module.css";

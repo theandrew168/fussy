@@ -1,6 +1,7 @@
 import type { UUID } from "node:crypto";
 
-import type { Feature, Source } from "./model";
+import type { Feature } from "./feature";
+import type { Source } from "./source";
 
 export type FeatureRepository = {
 	create: (feature: Feature) => Promise<void>;

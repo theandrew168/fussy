@@ -1,9 +1,9 @@
-import { randomUUID, type UUID } from "node:crypto";
-
 import { Version3Client } from "jira.js";
 import type { Document, Issue } from "jira.js/out/version3/models";
 
-import type { JiraIssueContext, JiraIssueSource } from "@/domain/model";
+import type { JiraIssueSource } from "@/domain/source";
+import type { JiraIssueContext } from "@/domain/context";
+import { readConfigFromEnvironment } from "@/config";
 
 type DocumentWithoutVersion = Omit<Document, "version">;
 
@@ -41,13 +41,8 @@ function renderIssueComments(issue: Issue): string[] {
 }
 
 export class APIJiraIntegration {
+	private static instance?: APIJiraIntegration;
 	private client: Version3Client;
-
-	type = "jira" as const;
-	id: UUID = randomUUID();
-	url: string = "TODO";
-	createdAt = new Date();
-	updatedAt = new Date();
 
 	constructor(url: string, email: string, apiKey: string) {
 		this.client = new Version3Client({
@@ -59,6 +54,19 @@ export class APIJiraIntegration {
 				},
 			},
 		});
+	}
+
+	static getInstance(): APIJiraIntegration | undefined {
+		const config = readConfigFromEnvironment();
+		if (!config.jira) {
+			return undefined;
+		}
+
+		if (!this.instance) {
+			this.instance = new APIJiraIntegration(config.jira.url, config.jira.email, config.jira.apiKey);
+		}
+
+		return this.instance;
 	}
 
 	async fetchIssueContext(source: JiraIssueSource): Promise<JiraIssueContext> {
