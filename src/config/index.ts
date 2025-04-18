@@ -1,8 +1,16 @@
+export type GitHubConfig = {
+	apiKey: string;
+};
+
+export type JiraConfig = {
+	url: string;
+	email: string;
+	apiKey: string;
+};
+
 export type Config = {
-	githubAPIKey: string;
-	jiraURL: string;
-	jiraEmail: string;
-	jiraAPIKey: string;
+	github?: GitHubConfig;
+	jira?: JiraConfig;
 };
 
 export class MissingConfigError extends Error {
@@ -12,30 +20,25 @@ export class MissingConfigError extends Error {
 }
 
 export function readConfigFromEnvironment(): Config {
+	const config: Config = {};
+
 	const githubAPIKey = process.env.GITHUB_API_KEY;
-	if (!githubAPIKey) {
-		throw new MissingConfigError("GITHUB_API_KEY is missing");
+	if (githubAPIKey) {
+		config.github = {
+			apiKey: githubAPIKey,
+		};
 	}
 
 	const jiraURL = process.env.JIRA_URL;
-	if (!jiraURL) {
-		throw new MissingConfigError("JIRA_URL is missing");
-	}
-
 	const jiraEmail = process.env.JIRA_EMAIL;
-	if (!jiraEmail) {
-		throw new MissingConfigError("JIRA_EMAIL is missing");
-	}
-
 	const jiraAPIKey = process.env.JIRA_API_KEY;
-	if (!jiraAPIKey) {
-		throw new MissingConfigError("JIRA_API_KEY is missing");
+	if (jiraURL && jiraEmail && jiraAPIKey) {
+		config.jira = {
+			url: jiraURL,
+			email: jiraEmail,
+			apiKey: jiraAPIKey,
+		};
 	}
 
-	return {
-		githubAPIKey,
-		jiraURL,
-		jiraEmail,
-		jiraAPIKey,
-	};
+	return config;
 }

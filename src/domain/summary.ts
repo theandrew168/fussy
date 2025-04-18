@@ -4,10 +4,10 @@ import { createPrompt } from "./prompt";
 
 export class FeatureSummarizer {
 	private llm: LLM;
-	private githubIntegration: GitHubIntegration;
-	private jiraIntegration: JiraIntegration;
+	private githubIntegration?: GitHubIntegration;
+	private jiraIntegration?: JiraIntegration;
 
-	constructor(llm: LLM, githubIntegration: GitHubIntegration, jiraIntegration: JiraIntegration) {
+	constructor(llm: LLM, githubIntegration?: GitHubIntegration, jiraIntegration?: JiraIntegration) {
 		this.llm = llm;
 		this.githubIntegration = githubIntegration;
 		this.jiraIntegration = jiraIntegration;
@@ -16,8 +16,14 @@ export class FeatureSummarizer {
 	async fetchContext(config: Source): Promise<Context> {
 		switch (config.type) {
 			case "githubPullRequest":
+				if (!this.githubIntegration) {
+					throw new Error("GitHub integration is not configured.");
+				}
 				return this.githubIntegration.fetchPullRequestContext(config);
 			case "jiraIssue":
+				if (!this.jiraIntegration) {
+					throw new Error("Jira integration is not configured.");
+				}
 				return this.jiraIntegration.fetchIssueContext(config);
 			default:
 				throw new Error(`Unknown context config: ${config}`);

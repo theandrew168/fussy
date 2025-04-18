@@ -43,8 +43,17 @@ export default async function Feature({ params }: { params: Promise<Params> }) {
 
 	// TODO: Move these to a shared / closured location.
 	const llm = new OllamaLLM();
-	const githubIntegration = new APIGitHubIntegration(config.githubAPIKey);
-	const jiraIntegration = new APIJiraIntegration(config.jiraURL, config.jiraEmail, config.jiraAPIKey);
+
+	let githubIntegration: APIGitHubIntegration | undefined;
+	if (config.github?.apiKey) {
+		githubIntegration = new APIGitHubIntegration(config.github.apiKey);
+	}
+
+	let jiraIntegration: APIJiraIntegration | undefined;
+	if (config.jira) {
+		jiraIntegration = new APIJiraIntegration(config.jira.url, config.jira.email, config.jira.apiKey);
+	}
+
 	const featureSummarizer = new FeatureSummarizer(llm, githubIntegration, jiraIntegration);
 
 	const summary = await featureSummarizer.summarize(feature);
